@@ -1,0 +1,19 @@
+<div class="container">
+    <div *ngIf="!registerMode" style="text-align:center">
+    <h1>The Dating App</h1>
+    <p class="lead">Join now to view your matches...All You need to do is click Register</p>
+    <div class="text-center">
+        <button
+        (click)="toggleRegisterMode()"
+        class="btn btn-primary btn-lg mr-2">Register</button>
+        <button class="btn btn-primary btn-lg mr-2">Learn More</button>
+    </div>
+    </div>
+
+
+    <app-register
+    [usersFromHomeComponent]="Users"
+    (CancelRegister)="cancelRegister($event)"
+    *ngIf="registerMode"></app-register>
+
+</div>
