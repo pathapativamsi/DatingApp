@@ -1,24 +1,25 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container">
-            <a class="navbar-brand" href="#">The Dating App</a>
-              <ul class="navbar-nav mr-auto" *ngIf="accountService.currentUser$ | async">
+            <a class="navbar-brand" routerLink="/" routerLinkActive="active">The Dating App</a>
+            <ng-container *ngIf="accountService.currentUser$ | async">
+              <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                  <a class="nav-link" aria-current="page" href="#">Matches</a>
+                  <a class="nav-link" aria-current="page" routerLink="/members" routerLinkActive="active">Matches</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Lists</a>
+                  <a class="nav-link" routerLink="/lists" routerLinkActive="active">Lists</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link disabled" href="#">Messages</a>
+                  <a class="nav-link" routerLink="/messages" routerLinkActive="active">Messages</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" (click)="logout()">Logout</a>
+                  <a class="nav-link" routerLink="/errors" routerLinkActive="active">Errors</a>
                 </li>
               </ul>
+            </ng-container>
 
-
-              <div class="dropdown" *ngIf="accountService.currentUser$ | async" dropdown>
-                <a class="dropdown-toggle text-light" dropdownToggle>Welocme User</a>
+              <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
+                <a class="dropdown-toggle text-light" dropdownToggle>Welocme {{user.username | titlecase}}</a>
                 <div class="dropdown-menu" *dropdownMenu>
                   <a class="dropdown-item">EditProfile</a>
                   <div class="dropdown-divider"></div>
